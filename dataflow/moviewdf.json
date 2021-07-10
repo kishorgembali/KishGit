@@ -1,0 +1,42 @@
+{
+	"name": "moviewdf",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "moviesin",
+						"type": "DatasetReference"
+					},
+					"name": "movies"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "moviesout",
+						"type": "DatasetReference"
+					},
+					"name": "moviesout"
+				},
+				{
+					"dataset": {
+						"referenceName": "moviesout",
+						"type": "DatasetReference"
+					},
+					"name": "moviesbyyear"
+				}
+			],
+			"transformations": [
+				{
+					"name": "getyear"
+				},
+				{
+					"name": "aggbyyear"
+				}
+			],
+			"script": "source(output(\n\t\tmovieId as string,\n\t\ttitle as string,\n\t\tgenres as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false) ~> movies\nmovies derive(Year = toInteger(trim(right(title, 6), '()')),\n\t\ttitle = toString(left(title,length(title)-6))) ~> getyear\ngetyear aggregate(groupBy(Year),\n\tmoviecount = count()) ~> aggbyyear\ngetyear sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:['moviesfinal.csv'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\tpartitionBy('hash', 1)) ~> moviesout\naggbyyear sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:['moviesbyyear'],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\tpartitionBy('hash', 1)) ~> moviesbyyear"
+		}
+	}
+}
