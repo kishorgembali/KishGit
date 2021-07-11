@@ -125,7 +125,7 @@
 						"referenceName": "inputcsv",
 						"type": "DatasetReference",
 						"parameters": {
-							"inputfilename": "cars-adf.csv"
+							"inputfilename": "planes-adf.csv"
 						}
 					}
 				],
