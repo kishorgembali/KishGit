@@ -131,7 +131,7 @@
 						"referenceName": "twclsdb",
 						"type": "DatasetReference",
 						"parameters": {
-							"tablename": "dbo.cars"
+							"tablename": "cars"
 						}
 					}
 				]
