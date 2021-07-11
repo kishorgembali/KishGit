@@ -120,13 +120,19 @@
 				"inputs": [
 					{
 						"referenceName": "inputcsv",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"inputfilename": "cars-adf.csv"
+						}
 					}
 				],
 				"outputs": [
 					{
 						"referenceName": "twclsdb",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"tablename": "dbo.cars"
+						}
 					}
 				]
 			}
