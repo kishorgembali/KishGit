@@ -28,7 +28,7 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "delete from cars",
+						"preCopyScript": "delete from ",
 						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
@@ -137,6 +137,11 @@
 				]
 			}
 		],
+		"parameters": {
+			"cleartable": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"lastPublishTime": "2021-07-10T11:17:45Z"
 	},
