@@ -263,7 +263,10 @@
 							},
 							"sink": {
 								"type": "AzureSqlSink",
-								"preCopyScript": "delete from cars",
+								"preCopyScript": {
+									"value": "delete from @{pipeline().parameters.cleartable}",
+									"type": "Expression"
+								},
 								"disableMetricsCollection": false
 							},
 							"enableStaging": false,
@@ -366,12 +369,17 @@
 								"referenceName": "twclsdb",
 								"type": "DatasetReference",
 								"parameters": {
-									"tablename": "dbo.cars"
+									"tablename": "cars"
 								}
 							}
 						]
 					}
 				],
+				"parameters": {
+					"cleartable": {
+						"type": "string"
+					}
+				},
 				"annotations": [],
 				"lastPublishTime": "2021-07-10T11:17:45Z"
 			},
