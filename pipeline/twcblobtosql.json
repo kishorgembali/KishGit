@@ -28,7 +28,10 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
-						"preCopyScript": "delete from ",
+						"preCopyScript": {
+							"value": "delete from @{pipeline().parameters.cleartable}",
+							"type": "Expression"
+						},
 						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
