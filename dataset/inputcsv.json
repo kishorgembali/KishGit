@@ -15,7 +15,10 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "cars-adf.csv",
+				"fileName": {
+					"value": "@dataset().inputfilename",
+					"type": "Expression"
+				},
 				"container": "input"
 			},
 			"columnDelimiter": ",",
