@@ -16,7 +16,7 @@ other_pr_master | [link]()
 List EPICs / User Stories / Task Details:
 
 ## Checklist
-- [ ] No ES Lint errors
+- [X] No ES Lint errors
 - [ ] No Style Lint errors
 - [ ] Unit Cases updated ?
 
